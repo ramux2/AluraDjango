@@ -1,9 +1,9 @@
-from pyexpat import model
 from django.db import models
-from django.forms import CharField
 from datetime import datetime
+from pessoas.models import Pessoa
 
 class Receita(models.Model):
+    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     nome_receita = models.CharField(max_length=200)
     ingredientes = models.TextField()
     modo_preparo = models.TextField()

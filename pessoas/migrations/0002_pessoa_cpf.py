@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='pessoa',
             name='cpf',
-            field=models.IntegerField(default=12345678900, max_length=11),
+            field=models.IntegerField(default=00000000000, max_length=11),
         ),
     ]
