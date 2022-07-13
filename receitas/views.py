@@ -4,7 +4,6 @@ from .models import Receita
 def index(request):
 
     receitas = Receita.objects.all()
-
     dados = {
         'receitas' : receitas
     }
