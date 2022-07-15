@@ -1,9 +1,10 @@
+from datetime import date
 from django.shortcuts import get_object_or_404, render
 from .models import Receita
 
 def index(request):
 
-    receitas = Receita.objects.all()
+    receitas = Receita.objects.order_by('-data_receita').filter(publicada=True)
     dados = {
         'receitas' : receitas
     }
