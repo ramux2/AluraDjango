@@ -1,4 +1,5 @@
 from datetime import date
+from urllib import request
 from django.shortcuts import get_object_or_404, render
 from .models import Receita
 
@@ -19,3 +20,6 @@ def receita(request, receita_id):
     }
 
     return render(request, 'receita.html', receita_a_exibir)
+
+def buscar(request):
+    return render(request, 'buscar.html')
