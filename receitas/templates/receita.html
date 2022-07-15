@@ -15,18 +15,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="#" method="post">
-                        <input type="search" name="search" placeholder="O que está procurando...">
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
+                    {% include 'partials/_search.html' %}
                 </div>
             </div>
         </div>
     </div>
 
-{% include 'partials/menu.html' %}
+{% include 'partials/_menu.html' %}
 
-        <!-- Receipe Post Search -->
+        <!-- Receipe Post Search 
         <div class="receipe-post-search mb-80">
             <div class="container">
                 <form action="#" method="post">
@@ -44,7 +41,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div>-->
 
         <!-- Receipe Slider -->
         <div class="container">
@@ -100,6 +97,6 @@
                 </div>
                 <!-- Ingredientes -->
 
-{% include 'partials/footer.html' %}
+{% include 'partials/_footer.html' %}
 
 {% endblock %}

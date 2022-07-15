@@ -15,16 +15,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="{% url 'buscar' %}">
-                        <input type="search" name="buscar" placeholder="O que está procurando...">
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
+                    {% include 'partials/_search.html' %}
                 </div>
             </div>
         </div>
     </div>
 
-    {% include 'partials/menu.html' %}
+    {% include 'partials/_menu.html' %}
 
     <!-- ##### Best Receipe Area Start ##### -->
     <section class="best-receipe-area">
@@ -59,6 +56,6 @@
     </section>
     <!-- ##### Best Receipe Area End ##### -->
 
-{% include 'partials/footer.html' %}
+{% include 'partials/_footer.html' %}
 
 {% endblock %}
