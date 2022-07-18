@@ -24,7 +24,6 @@ def cadastro(request):
 
         user = User.objects.create_user(username=nome, email=email, password=senha)
         user.save()
-        
         return redirect('login')
     else:
         return render(request, 'usuarios/cadastro.html')
