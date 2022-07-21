@@ -1,7 +1,7 @@
 import email
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.models import User
-from django.contrib import auth
+from django.contrib import auth, messages
 from receitas.models import Receita
 from receitas.views import receita
 
@@ -11,16 +11,20 @@ def cadastro(request):
         email = request.POST['email']
         senha = request.POST['password']
         senha2 = request.POST['password2']
-        if not nome.strip():
+        if vazio(nome):
+            messages.error(request, 'Nome não pode ficar em branco')
             return redirect('cadastro')
 
-        if not email.strip():
+        if vazio(email):
+            messages.error(request, 'Email não pode ficar em branco')
             return redirect('cadastro')
 
-        if not senha.strip():
+        if vazio(senha):
+            messages.error(request, 'Nome não pode ficar em branco')
             return redirect('cadastro')
 
         if senha != senha2:
+            messages.error(request, 'As senhas não coincidem')
             return redirect('cadastro')
 
         if User.objects.filter(email = email).exists():
@@ -28,6 +32,7 @@ def cadastro(request):
 
         user = User.objects.create_user(username=nome, email=email, password=senha)
         user.save()
+        messages.success(request, 'Cadastro feito com sucesso')
         return redirect('login')
     else:
         return render(request, 'usuarios/cadastro.html')
@@ -80,3 +85,7 @@ def cria_receita(request):
         return redirect('dashboard')
     else:
         return render(request, 'usuarios/cria_receita.html')
+
+
+def vazio(campo):
+    return not campo.strip()
