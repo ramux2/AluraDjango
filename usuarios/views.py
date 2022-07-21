@@ -1,4 +1,3 @@
-import email
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
@@ -23,11 +22,16 @@ def cadastro(request):
             messages.error(request, 'Nome não pode ficar em branco')
             return redirect('cadastro')
 
-        if senha != senha2:
+        if verifica_senhas(senha, senha2):
             messages.error(request, 'As senhas não coincidem')
             return redirect('cadastro')
 
         if User.objects.filter(email = email).exists():
+            messages.error(request, 'E-mail já cadastrado')
+            return redirect('cadastro')
+
+        if User.objects.filter(username = nome).exists():
+            messages.error(request, 'E-mail já cadastrado')
             return redirect('cadastro')
 
         user = User.objects.create_user(username=nome, email=email, password=senha)
@@ -43,6 +47,7 @@ def login(request):
         senha = request.POST['senha']
         
         if email == '' or senha == '':
+            messages.error(request, 'Os campos E-mail e Senha não podem ser vazios')
             return redirect('login')
         
         if User.objects.filter(email=email).exists():
@@ -89,3 +94,6 @@ def cria_receita(request):
 
 def vazio(campo):
     return not campo.strip()
+
+def verifica_senhas(senha, senha2):
+    return senha != senha2
